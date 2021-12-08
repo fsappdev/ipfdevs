@@ -1,0 +1,4 @@
+{
+   "mongoURI": "mongodb+srv://dardbmongo:Z7YlP6nSE3qqfHW9@devconnector.l1jpy.mongodb.net/devconnector?retryWrites=true&w=majority",
+   "jwtSecret" :"vamoriverpleee"
+}
