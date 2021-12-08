@@ -71,10 +71,6 @@ async (req, res) => {
                 res.json({token})
             })
        
-
-
-
-
         /* console.log('user created')
         res.json({msg:'datos correctos user creado', datos : req.body.name + req.body.email}) */
 
@@ -82,8 +78,6 @@ async (req, res) => {
         console.error(error.message)
         res.status(500).send('server error')
     }
-
-
 
     /*  res.json({msg:`user route + ${req.body.name}`}) */
    
