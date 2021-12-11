@@ -23,7 +23,7 @@ app.get('/test', (req, res) => res.send('BEnd api rest activo') )
 
 app.use('/api/users', usersRoutes)
 app.use('/api/posts', postsRoutes)
-app.use('/api/auth', authRoutes)
+app.use('/api/auth',  authRoutes)
 app.use('/api/profile',  profileRoutes)
 
 app.listen(PORT , () => {

@@ -10,11 +10,13 @@ const User = require('../../models/User')
 //@route POST api/users
 //@desc: registration route
 //@access: public
+//]
+
 router.post('/', 
 [
 check('name', '-el nombre es requerido-').not().isEmpty(),
 check('password', '-el password debe ser de un minimo de 6 caracteres-').isLength({min:6}),
-check('email', '-debe incluir un email valido-').isEmail()
+check('email', '-debe incluir un email valido-').isEmail()  
 ],
 async (req, res) => {
     //console.log(req. body)
