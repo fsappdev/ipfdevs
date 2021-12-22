@@ -12,6 +12,8 @@ module.exports = function(req, res, next)  {
     try {
         const decoded = jwt.verify(token, config.get('jwtSecret'))
 
+        console.log('DECODED => ', decoded)
+
         //attach user at req and pass to next mware.
         req.user = decoded.user 
 

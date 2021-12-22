@@ -1,3 +1,4 @@
+//// "NOSEPORQUENOANDA "¯\_(ツ)_/¯" LOL   
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -24,7 +25,7 @@ app.get('/test', (req, res) => res.send('BEnd api rest activo') )
 app.use('/api/users', usersRoutes)
 app.use('/api/posts', postsRoutes)
 app.use('/api/auth',  authRoutes)
-app.use('/api/profile',  profileRoutes)
+app.use('/api/profile', profileRoutes)
 
 app.listen(PORT , () => {
    console.log(`servidor iniciado en el puerto: ${PORT}`)
