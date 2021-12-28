@@ -72,25 +72,126 @@ router.get('/', async (req, res) => {
 //desc: get post by Id
 //@Private
  
-    router.get('/:id', auth ,async (req, res) => {
-        try {
-            
-            const post = await Post.findById(req.params.id)
-            
-            if(!post) return res.status(404).json({msg: 'La publicación no existe'}) 
+router.get('/:id', auth ,async (req, res) => {
+    try {
+        
+        const post = await Post.findById(req.params.id)
+        
+        if(!post) return res.status(404).json({msg: 'La publicación no existe'}) 
 
-            res.json(post)
-    
-        } catch (err) {
-            
-            console.error(err.message)
-            
-            if(err.kind === 'ObjectId'){
-                return res.status(404).json({msg: 'La publicacion no existe'})
-            }
+        res.json(post)
 
-            res.status(500).send('Server Error')
+    } catch (err) {
+        
+        console.error(err.message)
+        
+        if(err.kind === 'ObjectId'){
+            return res.status(404).json({msg: 'La publicacion no existe'})
         }
-    })
+
+        res.status(500).send('Server Error')
+    }
+})
+
+//@route DELETE api/posts/:id
+//desc: DELETE post by Id
+//@Private
+ 
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        
+        const post = await Post.findById(req.params.id)
+
+        
+        if(!post){
+            return res.status(404).json({msg: 'El post no existe'})
+        }
+        
+        //check user
+        if(post.user.toString() !== req.user.id){
+            return res.status(401).json({msg: 'Usuario no autorizado'})
+        }  
+
+        await post.remove()
+
+        res.json({msg: 'el post ha sido borrado'})
+
+    } catch (err) {
+        
+        console.error(err.message)
+        
+        if(err.kind === 'ObjectId'){
+            return res.status(404).json({msg: 'La publicacion no existe'})
+        }
+
+        res.status(500).send('Server Error')
+    }
+})
+
+//@route PUT api/posts/like/:id
+//desc: LIKE A post by Id
+//@Private
+
+router.put('/like/:id', auth, async (req, res) => {
+
+    try {
+        
+        const post = await Post.findById(req.params.id)
+        
+        //check if the post has already been liked
+
+        if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0){
+            return res.status(400).json({msg : 'el post ya ha sido likeado previamente'})
+        }
+
+        post.likes.unshift({ user: req.user.id })
+
+        await post.save()
+
+        return res.json(post.likes)
+
+    } catch (err) {
+
+        console.error(err.message)
+        
+        return res.status(500).send('Server Error')
+    }
+
+})
+
+//@route PUT api/posts/unlike/:id
+//desc: UNLIKE A post by Id
+//@Private
+
+router.put('/unlike/:id', auth, async (req, res) => {
+
+    try {
+        
+        const post = await Post.findById(req.params.id)
+        
+        //check if the post has already been liked
+
+        if(post.likes.filter(like => like.user.toString() === req.user.id).length === 0){
+            return res.status(400).json({msg : 'el post NO ha sido likeado previamente'})
+        }
+
+        //get the remove index
+        //const removoIndex = post.likes.map(like = like.user.toString()).indexOf(req.user.id)
+        const removeIndex = post.likes.map(like => like.user.toString() === req.user.id).indexOf() 
+
+        post.likes.splice(removeIndex, 1)
+
+        await post.save()
+
+        return res.json(post.likes)
+
+    } catch (err) {
+
+        console.error(err.message)
+        
+        return res.status(500).send('Server Error')
+    }
+
+})
 
 module.exports = router

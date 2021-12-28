@@ -37,17 +37,21 @@ async (req, res) => {
     const errors = validationResult(req)
 
     if(!errors.isEmpty()){
-            return res.status(400).json({errors :  errors.array()})
+        return res.status(400).json({errors :  errors.array()})
     }
 
    //check user existence
     try {
         let user = await User.findOne({email})
-        if (!user){ res.status(400).json({errors : [{msg: 'credenciales no válidas'}] })  }
+        if(!user){
+            return res.status(400).json({errors : [{msg: 'user not found'}] })  
+        }
         
         const isMatch = await bcrypt.compare(password, user.password)
 
-        if(!isMatch){ res.status(400).json({errors : [{msg: 'credenciales no válidas'}] }) }
+        if(!isMatch){ 
+            return res.status(400).json({errors : [{msg: 'unvalid credentials'}] }) 
+        }
 
         //return jsonwebtoken
         
@@ -71,7 +75,7 @@ async (req, res) => {
 
     } catch (error) {
         console.error(error.message)
-        res.status(500).send('server error')
+        return res.status(500).send('server error')
     }
 
     /*  res.json({msg:`user route + ${req.body.name}`}) */
