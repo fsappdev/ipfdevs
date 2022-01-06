@@ -245,12 +245,13 @@ router.delete('/comment/:id/:comment_id', auth ,async (req, res) => {
     
     try {
 
-        console.log('user-id:=>',req.user.id)
+        //console.log('user-id:=>',req.user.id)
+        
         const post = await Post.findById(req.params.id)
         
         if(!post) return res.status(404).json({msg:'post not found'})
 
-        console.log('si hay post ?=>',post)
+        //console.log('si hay post ?=>',post)
         
         //pull out commen
         const comment = await post.comments.find(comment => comment.id === req.params.comment_id)
@@ -266,7 +267,8 @@ router.delete('/comment/:id/:comment_id', auth ,async (req, res) => {
         // const removeIndex = post.likes.map(like => like.user.toString() === req.user.id).indexOf() 
         //get remove index
         const removeIndex = post.comments
-            .map(comment => comment.user.toString() === req.user.id).indexOf()    
+            .map(comment => comment.user.toString() === req.user.id)
+            .indexOf()    
 
         post.comments.splice(removeIndex, 1)
 

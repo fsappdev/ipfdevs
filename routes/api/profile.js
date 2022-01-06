@@ -6,7 +6,7 @@ const User = require('../../models/User')
 const request = require('request')
 const config = require('config')
 const { check, validationResult} = require('express-validator')
-const { Router } = require('express')
+
 
 //@route GET api/profile/me
 //desc: get current users profile
@@ -138,19 +138,21 @@ router.get('/user/:user_id', async (req, res) => {
 })
 
 //@route DELETE api/profile
-//desc: DELETE profile, user, post by user_id
+//desc: DELETE profile, user & posts by user_id
 //@private
 router.delete('/', auth, async (req, res) => {
     
-    const queryProfile = {user : req.user_id}
+    const queryProfile = {user : req.user.id}
    
 
     try {
         //TODO: REMOVE USERS POSTS
+
         //remove profile
         await Profile.findOneAndDelete(queryProfile)
+        
         //remove user
-        await User.findByIdAndDelete(req.user.id)
+        await User.findByIdAndDelete({_id: req.user.id})
 
         res.json({msg: 'User Deleted'})
 
