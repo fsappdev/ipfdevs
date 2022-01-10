@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+//import  axios from "axios";
+
 const Register = () => {
 
     const [formData, setFormData] = useState({
@@ -13,20 +15,68 @@ const Register = () => {
 
     const handleChange = e => setFormData({...formData, [e.target.name] : e.target.value})
 
-    const handleOnSubmit = (e) => { 
+    const handleOnSubmit = async (e) => { 
         e.preventDefault()
+
         if(password !== passwordDos){
             console.log('las contraseñas no coinciden')
         }else{
-            console.log(formData)
+            //console.log(formData)
+            /* const newUser = {
+                name,
+                email,
+                password
+            }
+
+            try {
+                
+                const config = {
+                    headers : {
+                        'Content-Type':'application/json'
+                    }
+                }
+
+                const body = JSON.stringify(newUser)
+
+                const res = await axios.post('back/api/users', body, config)
+
+                console.log(res.data)
+                
+                alert('registro exitoso')
+                
+                return 
+            } catch (err) {
+                console.error(err.response.data)
+            } */
+            console.log('success')
         }
     }
+     
+    ////////testing proxy 
+    const handleTest = async () => { 
+
+            try {
+
+                const res = await fetch('/api')
+                const data = await res.json()
+
+                console.log(data)
+                
+                return 
+            } catch (err) {
+                console.error(err.response.data)
+            }
+        
+    }
+
+
+
 
     return (
         <>
             <div className="centered">
                 <h1 className="large text-primary">Registrarse/Sing Up</h1>
-                <p className="lead"><i className="fas fa-user"></i> Crea tu cuenta/Create Your Account</p>
+                <p className="lead button3d"><i className="fas fa-user"></i> Crea tu cuenta/Create Your Account</p>
             </div>
             
             <form className="form" onSubmit={(e)=>handleOnSubmit(e)}>
@@ -75,11 +125,16 @@ const Register = () => {
                 </div>
                 
                 <div className="centered">
+                    
                     <input type="submit" 
-                        className="btn btn-primary centered" 
+                        //className="btn btn-primary " 
+                        className="button3d"
                         value="pulse para registrarse_"
                         //onSubmit={e => handleOnSubmit(e)} 
                     />
+                    
+                    {/* <button className="button3d btn btn-primary" onClick={handleTest} type="button">Click Me!</button>  */}
+
                     <p className="my-1">
                         ya tienes una cuenta? <Link to="/login">entrar</Link>
                     </p>
