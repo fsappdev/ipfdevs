@@ -19,8 +19,12 @@ check('password', '-el password debe ser de un minimo de 6 caracteres-').isLengt
 check('email', '-debe incluir un email valido-').isEmail()  
 ],
 async (req, res) => {
-    //console.log(req. body)
+    
+    console.log(req.body)
+    
     const {name, email, password } = req.body
+
+    console.log('incoming data=>', name, email, password)
 
     const errors = validationResult(req)
 
