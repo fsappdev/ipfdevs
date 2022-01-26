@@ -1,4 +1,3 @@
-import {useState, useContext} from "react"
 import { connect } from "react-redux";
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -43,7 +42,6 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
             {
                 !loading && (<> { isAuthenticated ? authLinks : guestLinks } </>)
             }
-
         </nav>
     )
 }

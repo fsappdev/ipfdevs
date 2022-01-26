@@ -30,8 +30,8 @@ const Login = ({login, isAuthenticated}) => {
     return (
         <>
             <div className="centered">
-                <h1 className="large text-primary">Entrar/Sing In</h1>
-                <p className="lead button3d"><i className="fas fa-user"></i> Entra con tu cuenta de.../Sing into your account</p>
+                <h1 className="large text-primary">Entrar/Log In</h1>
+                <p className="lead button3d"><i className="fas fa-user"></i> Inicia sesión con tu cuenta/Log in into your account</p>
             </div>
             
             <form className="form" onSubmit={(e)=>handleOnSubmit(e)}>
