@@ -3,6 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 import { createProfile, getCurrentProfile } from '../../actions/profile'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import EnviarVolver from '../../components/layout/EnviarVolver';
+;
+ 
 
 const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history }) => {
     
@@ -60,21 +63,21 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
 
     return (
         <>
-            <div className='centered'>
-                <h1 className="large text-primary">
+            <div className='centeredColumn'>
+                <h1 className="text-primary">
                     Crea tu perfil
                 </h1>
                 
                 <p className="lead">
                     <i className="fas fa-user"></i> Hagamos que tu perfil se destaque
                 </p>
+            <small>* = el campo es obligatorio </small>
             </div>
             
-            <small>* = el campo es obligatorio </small>
 
-            <form className="form" onSubmit={ (e) => onSubmit(e)}>
-                <div className="form-group">
-                    <select name="status" value={status} onChange={(e)=>onChange(e)}>
+            <form className="form w-75" onSubmit={ (e) => onSubmit(e)}>
+                <div className=" centeredColumn">
+                    <select className='w-100 text-center rounded-pill' name="status" value={status} onChange={(e)=>onChange(e)}>
                         <option value="0">* Seleccione su perfil profesional</option>
                         <option value="Developer">Developer</option>
                         <option value="Junior Developer">Junior Developer</option>
@@ -91,7 +94,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     >
                 </div>
 
-                <div className="form-group">
+                <div className=" centeredColumn">
                     <input type="text" 
                         placeholder="Compañía" 
                         name="company" 
@@ -104,7 +107,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     </small>
                 </div>
 
-                <div className="form-group">
+                <div className=" centeredColumn">
                     <input type="text"
                         value={website} 
                         placeholder="Sitio web" 
@@ -115,7 +118,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     <small className="form-text">Puede ser tu propio sitio o el de tu empresa </small>    
                 </div>
 
-                <div className="form-group">
+                <div className=" centeredColumn">
                     <input type="text"
                         value={location} 
                         placeholder="ubicación" 
@@ -126,7 +129,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     <small className="form-text"> Ciudad & Provincia (ej. Formosa, FSA) </small>
                 </div>
 
-                <div className="form-group">
+                <div className=" centeredColumn">
                     <input type="text"
                         value={skills} 
                         placeholder="* Habilidades" 
@@ -140,7 +143,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     </small>
                 </div>
 
-                <div className="form-group">
+                <div className=" centeredColumn">
                     <input type="text"
                         value={ githubusername }
                         onChange={e => onChange(e)}
@@ -153,8 +156,9 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     </small>
                 </div>
 
-                <div className="form-group">
+                <div className=" centeredColumn">
                     <textarea
+                        className='w-100'
                         value={bio}
                         onChange={e => onChange(e)}
                         placeholder="una pequeña descripción de quien eres" 
@@ -164,12 +168,12 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     <small className="form-text">Cuéntanos algo acerca de tí</small>
                 </div>
 
-                <div className="my-2">
+                <div className=" centeredColumn">
 
                     <button type="button" 
                         onClick={() => viewSocialInputs(!socialInputs)} 
-                        className="btn btn-light button3d">
-                        agregar enlaces a redes sociales -opcional-
+                        className="btn w-50 mx-auto">
+                        agregar enlaces a redes sociales *opcional
                     </button>
                     
                 </div>
@@ -178,7 +182,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     socialInputs && 
                     <>
                                 
-                        <div className="form-group social-input">
+                        <div className=" social-input">
                             <i className="fab fa-twitter fa-2x"></i>
                             
                             <input type="text" 
@@ -189,7 +193,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                             />
                         </div>
 
-                        <div className="form-group social-input">
+                        <div className=" social-input">
                             <i className="fab fa-facebook fa-2x"></i>
                             
                             <input type="text"
@@ -200,7 +204,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                             />
                         </div>
 
-                        <div className="form-group social-input">
+                        <div className=" social-input">
                             <i className="fab fa-youtube fa-2x"></i>
                             
                             <input type="text"
@@ -211,7 +215,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                             />
                         </div>
 
-                        <div className="form-group social-input">
+                        <div className=" social-input">
                             <i className="fab fa-linkedin fa-2x"></i>
                             
                             <input type="text"
@@ -222,7 +226,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                             />
                         </div>
 
-                        <div className="form-group social-input">
+                        <div className=" social-input">
                             <i className="fab fa-instagram fa-2x"></i>
                             
                             <input type="text"
@@ -235,10 +239,8 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                     </>
                 }
 
-               <div className='centeredRow' >
-                    <input type="submit" style={{backgroundColor: "#17a2b8", color: "white"}} className="button3d btn my-1" />
-                    <Link className="button3d btn btn-light my-1" to="/dashboard">Volver</Link>
-               </div>
+               <EnviarVolver/>
+
             </form> 
         </>
     )

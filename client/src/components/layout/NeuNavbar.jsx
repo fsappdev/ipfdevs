@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/auth'
 
-const NeuNavbar = ({auth: {isAuthenticated, loading}, logout}) => {
+const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
 
    const authLinks = (
       <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
@@ -39,7 +39,7 @@ const NeuNavbar = ({auth: {isAuthenticated, loading}, logout}) => {
 
       <li className="nav-item active">
          <Link className="nav-link" to={"/login"}>
-         <i class="fa-solid fa-arrow-right-to-bracket"></i>{' '}
+         <i className="fa-solid fa-arrow-right-to-bracket"></i>{' '}
             Inicia Sesíon o...
             
          </Link>
@@ -50,7 +50,7 @@ const NeuNavbar = ({auth: {isAuthenticated, loading}, logout}) => {
       </div> */}
 
       <div className="d-flex">
-         <a className="btn" type="submit">Regístrate</a>
+         <Link to="/register" className="btn" type="submit">Regístrate</Link>
       </div>
    </ul>
 )
@@ -63,6 +63,15 @@ const NeuNavbar = ({auth: {isAuthenticated, loading}, logout}) => {
             <i className="fas fa-code"></i>
             {' '} IPF-Developers
          </Link>
+
+         {
+            !loading && isAuthenticated ? 
+            <div className="nav-link w-50 hide">
+               <i class="fa fa-user-circle-o" aria-hidden="true"></i>{' '}
+               usuario:  {user.name}
+            </div> 
+            : null 
+         }
          
          <button 
             className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,10 +83,11 @@ const NeuNavbar = ({auth: {isAuthenticated, loading}, logout}) => {
          <div className="collapse navbar-collapse" id="navbarCollapse">
             {/* condtnl render */}
             
-            {
-               !loading && (<> { isAuthenticated ? 
-                  authLinks : guestLinks } </>)
-            }
+            
+            
+         {
+            !loading && isAuthenticated ? authLinks : guestLinks 
+         }
 
          </div>
 
@@ -92,7 +102,7 @@ NeuNavbar.propTypes = {
 }
 
 const mapStateToProps = state => ({
-   auth: state.auth
+   auth: state.auth,
 })
 
 

@@ -2,11 +2,14 @@ import { Link } from 'react-router-dom'
 
 const EnviarVolver = () => {
   return (
-    <div className='centeredRow' >
+    <div className='my-3 d-flex justify-content-end ' >
         <input type="submit" 
-        style={{backgroundColor: "#17a2b8", color: "white"}} 
-        className="button3d btn my-1" />
-        <Link className="button3d btn btn-light my-1" to="/dashboard">Volver</Link>
+        className="green-icon btn w-25 " 
+        />  
+
+        <Link className=" blue-icon btn btn-light " to="/dashboard">
+          Volver
+        </Link>
     </div>
   )
     

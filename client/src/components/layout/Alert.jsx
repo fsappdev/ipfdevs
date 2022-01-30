@@ -8,9 +8,11 @@ const Alert = ({ alerts }) =>
         //<div key={item.id} className={`alert3d-${item.alertType}`}>
         <div
             key={item.id} 
-            className={`centered alert alert-${item.alertType}`}
+            className={`mx-auto text-center alert-${item.alertType}`}
         >
+            {' '}<i class="fa-solid fa-triangle-exclamation"></i>
             {item.msg}
+            {' '}<i class="fa-solid fa-triangle-exclamation"></i>
         </div>
     ))
 
