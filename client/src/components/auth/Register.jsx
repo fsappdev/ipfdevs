@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { setAlert } from '../../actions/alert'
 import { register } from '../../actions/auth'
 import PropTypes from 'prop-types';
+import EnviarVolver from "../layout/EnviarVolver";
 
 const Register = ({setAlert, register, isAuthenticated}) => {
 
@@ -34,7 +35,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
     if(isAuthenticated) return <Redirect to='/dashboard' />
 
     ////////testing proxy 
-    const handleTest = async () => { 
+    /* const handleTest = async () => { 
 
             try {
 
@@ -48,18 +49,22 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                 console.error(err.response.data)
             }
         
-    }
+    } */
 
     return (
         <>
-            <div className="centered">
+            <div className="centeredColumn my-3">
                 <h1 className="large text-primary">Registrarse/Sing Up</h1>
-                <p className="lead button3d"><i className="fas fa-user"></i> Crea tu cuenta/Create Your Account</p>
+                
+                <p className="lead"><i className="fas fa-user"></i> Crea tu cuenta/Create Your Account</p>
+
+                <small>* = el campo es obligatorio </small>
             </div>
             
-            <form className="form" onSubmit={(e)=>handleOnSubmit(e)}>
+            <form className="form w-75" onSubmit={(e)=>handleOnSubmit(e)}>
                 
-                <div className="form-group">
+                <div className="my-1 centeredColumn">
+
                     <input className="round"
                         type="text" 
                         placeholder="nombre/name" 
@@ -68,9 +73,15 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                         onChange={e => handleChange(e)} 
                         //required 
                     />
+
+                    <small className="form-text">
+                        tu primer nombre  
+                    </small>
+
                 </div>
                 
-                <div className="form-group">
+                <div className="my-1 centeredColumn">
+
                     <input type="email" 
                         placeholder="correo electrónico/email" 
                         name="email"
@@ -78,12 +89,15 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                         onChange={e => handleChange(e)}
                         //required
                     />
-                    <small className="form-text">
-                        este sitio usa <code>Gravatar</code> asi que si quieres usar una imagen de perfil, usa un correo asociado a <code>Gravatar</code> 
-                    </small>
+                    
+                    <p className="text-center my-1">
+                        <small >
+                            este sitio usa <code>Gravatar</code> asi que si quieres usar una imagen de perfil, usa un correo asociado a <code>Gravatar</code> 
+                        </small>
+                    </p>
                 </div>
                 
-                <div className="form-group">
+                <div className="my-1 centeredColumn" >
                     <input type="password"
                         placeholder="password"
                         name="password"
@@ -91,9 +105,15 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                         //minLength="6"
                         onChange={e => handleChange(e)}
                     />
+
+                    <p className="text-center my-1">
+                        <small >
+                            contraseña <code>con un minimo de 6 carácteres</code>  
+                        </small>
+                    </p>
                 </div>
                 
-                <div className="form-group">
+                <div className="my-1 centeredColumn">
                     <input type="password"
                         placeholder="reingrese el password/confirm password"
                         name="passwordDos"
@@ -101,24 +121,33 @@ const Register = ({setAlert, register, isAuthenticated}) => {
                         //minLength="6"
                         onChange={e => handleChange(e)}
                     />
+
+                    <p className="text-center my-1">
+                        <small >
+                            reingresa la contraseña   
+                        </small>
+                    </p>
                 </div>
                 
-                <div className="centered">
+                {/* <div className="my-1 centeredColumn"> */}
                     
-                    <input type="submit" 
+                    {/* <input type="submit" 
                         //className="btn btn-primary " 
                         className="button3d"
                         value="pulse para registrarse_"
                         //onSubmit={e => handleOnSubmit(e)} 
-                    />
+                    /> */}
                     
                     {/* <button className="button3d btn btn-primary" onClick={handleTest} type="button">Click Me!</button>  */}
 
-                    <p className="my-1">
+
+               {/*  </div> */}
+                    
+                <EnviarVolver/>
+
+                    <p className="my-1 centeredColumn">
                         ya tienes una cuenta? <Link to="/login">entrar</Link>
                     </p>
-                </div>
-
             </form>
 
             

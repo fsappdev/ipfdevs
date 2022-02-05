@@ -9,7 +9,7 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
       <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
           <li className="nav-item active mx-3">
               <Link className="nav-link" to="/dashboard">
-              <i class="fa-solid fa-address-card"></i>{' '}
+              <i className="fa-solid fa-address-card"></i>{' '}
                   <span className="">Panel de control</span>
               </Link>
           </li>
@@ -27,7 +27,7 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
    <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
       <li className="nav-item active">
          <Link className="nav-link" to="/profile">
-         <i class="fa-solid fa-user-group"></i>{' '}
+         <i className="fa-solid fa-user-group"></i>{' '}
             Conoce a la comunidad
             
          </Link>
@@ -56,7 +56,7 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
 )
 
   return (
-   <nav className="navbar navbar-expand-md navbar-dark navbar-fixed-top">
+   <nav className="navbar navbar-expand-md navbar-dark ">
       <div className="container-fluid">
 
          <Link to="/" className="navbar-brand">
@@ -67,8 +67,10 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
          {
             !loading && isAuthenticated ? 
             <div className="nav-link w-50 hide">
-               <i class="fa fa-user-circle-o" aria-hidden="true"></i>{' '}
-               usuario:  {user.name}
+               <i className="fa fa-user-circle-o" aria-hidden="true"></i>{' '}
+               {
+                  user ? `user: ${user.name}`: null
+               }
             </div> 
             : null 
          }
