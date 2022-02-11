@@ -71,12 +71,15 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                 <p className="lead">
                     <i className="fas fa-user"></i> Hagamos que tu perfil se destaque
                 </p>
-            <small>* = el campo es obligatorio </small>
+                
+                <small>* = campo es obligatorio </small>
+            
             </div>
             
 
             <form className="form w-75" onSubmit={ (e) => onSubmit(e)}>
-                <div className=" centeredColumn">
+                <div className="centeredColumn">
+                    
                     <select className='w-100 text-center rounded-pill' name="status" value={status} onChange={(e)=>onChange(e)}>
                         <option value="0">* Seleccione su perfil profesional</option>
                         <option value="Developer">Developer</option>
