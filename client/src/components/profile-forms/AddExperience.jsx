@@ -46,7 +46,6 @@ const AddExperience = ({ addExperience, history }) => {
         <small>* = el campo es requerido</small>
       </div>
 
-
       <form className="form w-75" onSubmit={ e => {
         e.preventDefault()
         addExperience(formData, history)
@@ -89,21 +88,22 @@ const AddExperience = ({ addExperience, history }) => {
           />
 
           <small className="form-text text-center">
-            Ubicación de la cía. para la cual trabajaste 
+            ubicación de la cía. para la cual trabajaste 
           </small>
         
         </div>
 
         <div className='row'>
-          <div className="col mt-1">
-            <h4>Fecha Desde</h4>
+          <div className="col mt-1 centeredColumn">
+            <h6>Fecha Desde</h6>
             <input type="date" 
             onChange={(e)=>onChange(e)}
+            value={from}
             name="from" />
           </div>
 
-          <div className="col mt-1">
-            <h4>Fecha Hasta</h4>
+          <div className="col mt-1 centeredColumn">
+            <h6>Fecha Hasta</h6>
             <input type="date" 
             onChange={(e)=>onChange(e)}
             name="to" 
@@ -112,90 +112,35 @@ const AddExperience = ({ addExperience, history }) => {
             />
           </div>
 
-          <div className="col mt-1">
+          <div className="col mt-4 centeredColumn">
           
-            <h4>Trabajo actual</h4>
-              {/* <input 
+            <h6>Trabajo actual</h6>
 
-              type="checkbox" 
-              onChange={ e => {
-                  setFormData({...formData, current: !current})
-                  toggleDisabled(!toDateDisabled)
-              }}
-              name="current" 
-              value={current} />  */}
-
-              <div className=''>
-                <div className="form-check centeredRow">
-                  <input  className="form-check-input" type="checkbox" 
-                  value="" 
-                  id="flexCheckDefault"
-                  onChange={ e => {
-                    setFormData({...formData, current: !current})
-                    toggleDisabled(!toDateDisabled)
-                  }}
-                  name="current" 
-                  value={current}
+              {/* <div className=''> */}
+                <div className="form-check">
+                  <input  className="form-check-input" type="checkbox"
+                    id="flexCheckDefault"
+                    onChange={ e => {
+                      setFormData({...formData, current: !current})
+                      toggleDisabled(!toDateDisabled)
+                    }}
+                    checked={current}  
+                    value={current}
+                    name="current" 
                   />
                   <label className="form-check-label" htmlFor="flexCheckDefault">
-                  <small className=''> es mi trabajo actual</small>
-                  
+                    <small className=''> trabajo aquí actualmente</small>
                   </label>
                 </div> 
-              </div>
+              {/* </div> */}
 
-             
-            
           </div>
         </div>
 
-        {/* <div className='row'>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-            <label className="form-check-label mt-2" for="flexCheckDefault">
-              es mi trabajo actual
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked/>
-            <label className="form-check-label" for="flexCheckChecked">
-              Checked checkbox
-            </label>
-          </div>
-        </div> */}
-
-
-        {/* <div className="w-25 centeredColumn mt-1">
-          <h4>Fecha Desde</h4>
-          <input type="date" 
-          onChange={(e)=>onChange(e)}
-          name="from" />
-        </div> */}
-
-        {/* <div className="w-25">
-            <input type="checkbox" 
-            onChange={ e => {
-                setFormData({...formData, current: !current})
-                toggleDisabled(!toDateDisabled)
-            }}
-            name="current" 
-            value={current} /> 
-            {' '}Trabajo Actual          
-        </div> */}
-
-        {/* <div className=" w-75">
-          <h4>Fecha Hasta</h4>
-          <input type="date" 
-          onChange={(e)=>onChange(e)}
-          name="to" 
-          value={to}
-          disabled={toDateDisabled ? true : false}
-          />
-        </div> */}
 
         <div className="centeredColumn">
           <textarea
+            id="description"
             onChange={(e)=>onChange(e)}
             name="description"
             value={description}
@@ -203,6 +148,10 @@ const AddExperience = ({ addExperience, history }) => {
             rows="5"
             placeholder="Descripción del puesto"
           ></textarea>
+          
+          <small className="form-text text-center">
+            cuéntanos algo acerca del puesto que ocupaste
+          </small>
         </div>
         
         <EnviarVolver/>
