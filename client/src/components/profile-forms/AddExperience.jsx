@@ -51,7 +51,6 @@ const AddExperience = ({ addExperience, history }) => {
         addExperience(formData, history)
       }}>
 
-
         <div className="centeredColumn">
           <input type="text"
           onChange={(e)=>onChange(e)} 

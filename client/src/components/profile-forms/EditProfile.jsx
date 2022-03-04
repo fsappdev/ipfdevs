@@ -4,7 +4,10 @@ import { createProfile, getCurrentProfile } from '../../actions/profile'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import EnviarVolver from '../../components/layout/EnviarVolver';
-;
+
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
+
+import download from "downloadjs";
  
 
 const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history }) => {
@@ -60,6 +63,31 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
             instagram: loading || !profile.social ? '' : profile.social.instagram
         })
     }, [loading])
+
+    //
+    async function createPdf(e) {
+        e.preventDefault()
+        const pdfDoc = await PDFDocument.create()
+        const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+      
+        const page = pdfDoc.addPage()
+        const { width, height } = page.getSize()
+        const fontSize = 30
+        
+        page.drawText('Creating PDFs in JavaScript is awesome!', {
+          x: 50,
+          y: height - 4 * fontSize,
+          size: fontSize,
+          font: timesRomanFont,
+          color: rgb(0, 0.53, 0.71),
+        })
+      
+        const pdfBytes = await pdfDoc.save()
+
+        download(pdfBytes, "info.pdf", "text/pdf")    
+
+      }
+      //
 
     return (
         <>
@@ -158,6 +186,14 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                         Incluye tu nombre de usuario de Github para ver tus ultimos repositorios y el enlace a tu perfil de github 
                     </small>
                 </div>
+
+                {/* <div>
+                   <button
+                    onClick={(e)=>{createPdf(e)}}
+                   >
+                       ver PDF
+                   </button>         
+                </div> */}            
 
                 <div className=" centeredColumn">
                     <textarea

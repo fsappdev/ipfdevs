@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const DashboardActions = () => {
     return (
-        <div className="centeredRow">
+        <div className="centeredRow mb-4">
             <Link to="/edit-profile" className="btn red-icon"
             ><i className="fas fa-user-circle red-icon"></i> Editar tu Perfil</Link>
             
@@ -12,7 +12,6 @@ const DashboardActions = () => {
             
             <Link to="/add-education" className="btn "
             ><i className="fas fa-graduation-cap green-icon"></i> Agregar Educación</Link>
-            
         </div>
     )
 }
