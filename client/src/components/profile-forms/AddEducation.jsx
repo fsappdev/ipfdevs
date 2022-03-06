@@ -133,7 +133,7 @@ const AddEducation = ({ addEducation, history }) => {
                     name="current" 
                     style={{height:"25px", fontSize:"10px", paddingTop: "2px"}} 
                   />
-                    <small className=''> trabajo actual</small>
+                    <small className=''> asistiendo</small>
                   {/* <label className="form-check-label" htmlFor="flexCheckDefault">
                   </label> */}
                 </div> 

@@ -3,6 +3,7 @@ const router = express.Router()
 const auth = require('../../middlewares/auth')
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
+const Post = require('../../models/Post')
 const request = require('request')
 const config = require('config')
 const { check, validationResult} = require('express-validator')
@@ -148,6 +149,9 @@ router.delete('/', auth, async (req, res) => {
     try {
         //TODO: REMOVE USERS POSTS
 
+        //remove user posts
+        await Post.deleteMany({user: req.user.id})
+
         //remove profile
         await Profile.findOneAndDelete(queryProfile)
         
@@ -228,11 +232,15 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     try {
         
         const profile = await Profile.findOne({ user : req.user.id })
+
+        console.log( 'asdasdasuser=>' , profile)
         
         //get the remove index  
         //const removeIndex = await Profile.experience.filter(item => item.id).indexOf(req.params.exp_id)
 
         const removeIndex = await profile.experience.filter(item => item.id === req.params.exp_id).indexOf()
+
+        console.log('indice', removeIndex)
 
         profile.experience.splice(removeIndex, 1)
 
