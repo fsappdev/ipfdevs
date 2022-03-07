@@ -3,8 +3,6 @@ import { useEffect } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Landing from './components/layout/Landing'
-/* import Navbar from './components/layout/Navbar'
-import Login from './components/auth/Login' */
 import Alert from "./components/layout/Alert";
 import Register from './components/auth/Register'
 import setAuthToken  from './utils/setAuthToken'
@@ -15,6 +13,7 @@ import CreateProfile from './components/profile-forms/CreateProfile'
 import EditProfile from './components/profile-forms/EditProfile'
 import AddExperience from './components/profile-forms/AddExperience'
 import AddEducation from './components/profile-forms/AddEducation'
+import Profiles from './components/profiles/Profiles'
 
 //neum components
 import NeuLogin from './components/auth/NeuLogin'
@@ -28,8 +27,7 @@ import store from './store'
 //
 
 const App = () =>  {
-  //const [count, setCount] = useState(0)
-
+ 
   if(localStorage.token) {
     setAuthToken(localStorage.token)
   }
@@ -49,9 +47,8 @@ const App = () =>  {
         <section className="container">
           <Alert/>
           <Switch>
-            {/* <Route exact path={"/login"} component={Login}/> */}
             <Route exact path={"/login"} component={NeuLogin}/>
-            
+            <Route exact path={"/profiles"} component={Profiles}/>
             <Route exact path={"/register"} component={Register}/>
             <PrivateRoute exact path={"/dashboard"} component={Dashboard}/>
             <PrivateRoute exact path={"/create-profile"} component={CreateProfile}/>

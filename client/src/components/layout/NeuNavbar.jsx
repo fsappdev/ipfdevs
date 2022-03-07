@@ -7,6 +7,14 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
 
    const authLinks = (
       <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
+          <li className="nav-item active">   
+            <Link className="nav-link" to="/profiles">
+            <i className="fa-solid fa-user-group"></i>
+            <i className="fa-solid fa-user-group"></i>
+               Devs
+            </Link>
+          </li>
+
           <li className="nav-item active mx-3">
               <Link className="nav-link" to="/dashboard">
               <i className="fa-solid fa-address-card"></i>{' '}
@@ -20,40 +28,35 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
                   <span className="hide-sm">Cerrar Sesión</span>
               </a>
           </li>
+
+          
       </ul>
-  )
+   )
   
   const guestLinks = (
-   <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
-      <li className="nav-item active">
-         <Link className="nav-link" to="/profile">
-         <i className="fa-solid fa-user-group"></i>{' '}
-            Conoce a la comunidad
-            
-         </Link>
-      </li>
+      <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
+         <li className="nav-item active">
+            <Link className="nav-link" to="/profiles">
+            <i className="fa-solid fa-user-group"></i>{' '}
+               Conoce a la comunidad
+            </Link>
+         </li>
 
-      {/* <li className="nav-item active">
-         <Link className="nav-link" to="/register">Registrarse</Link>
-      </li> */}
 
-      <li className="nav-item active">
-         <Link className="nav-link" to={"/login"}>
-         <i className="fa-solid fa-arrow-right-to-bracket"></i>{' '}
-            Inicia Sesíon o...
-            
-         </Link>
-      </li>
+         <li className="nav-item active">
+            <Link className="nav-link" to={"/login"}>
+            <i className="fa-solid fa-arrow-right-to-bracket"></i>{' '}
+               Inicia Sesíon o...
+               
+            </Link>
+         </li>
 
-      {/* <div className="d-flex mx-3 ">
-         <a className="btn" type="submit">Iniciar Sesíon</a>
-      </div> */}
-
-      <div className="d-flex">
-         <Link to="/register" className="btn" type="submit">Regístrate</Link>
-      </div>
-   </ul>
-)
+      
+         <div className="d-flex">
+            <Link to="/register" className="btn" type="submit">Regístrate</Link>
+         </div>
+      </ul>
+   )
 
   return (
    <nav className="navbar navbar-expand-md navbar-dark ">
