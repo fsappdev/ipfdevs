@@ -1,21 +1,38 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import userDefault from '../../img/default-user.png'
 
-const ProfileCard = () => {
+const ProfileCard = ({
+  profile: {
+    user: {_id, name, avatar}, 
+    status,
+    company,
+    location,
+    skills
+  }
+}) => {
+
+  
+
   return (
     <div>
-        <div className="card mb-3" >
-            <div className="row g-0">
-                <div className="col-md-4">
-                <img src="..." className="img-fluid rounded-start" alt="..."/>
-                </div>
-                <div className="col-md-8">
+        <div className="card " /* style={{maxWidth:"350px"}} */ >
+            
+               
+                <img src={avatar ? avatar : userDefault } className="card-img-top" alt="..."/>
+                 
+                
                 <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 className="card-title">{name}</h5>
+                    <p className="">{status} en: </p>
+                    <p className="card-text"><code>{company}</code> </p>
+                    <p className="card-text">{location}</p>
                 </div>
-                </div>
-            </div>
+                
+                <Link to={`/profile/${_id}`} className="btn btn-primary">
+                  perfil  
+                </Link>
+            
         </div>
     </div>
   )

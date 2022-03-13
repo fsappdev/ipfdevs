@@ -35,33 +35,46 @@ const ProfileItem = ({
           <div>
               <div className="card mb-3 " style={{ minWidth:"500px", width:"850px" }} >
                   <div className="row" >
-                      <div className="col-md-4" /* style={{height:"100%!"}} */>
+                      <div className="col-sm-4" /* style={{height:"100%!"}} */>
                       <img src={avatar ? avatar : userDefault } style={{minHeight:"100%"}}  
                       className="img-fluid rounded-start" alt="..."/>
                       </div>
-                      <div className="col-md-8">
-                      <div className="card-body ">
-                          <h5 className="card-title">{name}</h5>
-                          <p className="card-text">{status} {company && <span>en: {company}</span>}</p>
-                          <p className="card-text">{location && <span>{location}</span>}</p>
-                          {/* <p className="card-text">
-                            <small className="text-muted">
-                              {skills}
-                            </small>
-                          </p> */}
-                          <ul>
-                            {skills.slice(0,4).map((item,index)=>{
-                              return <li key={index}>
-                                    <i className="fas fa-check"></i>
-                                    {item}
-                                 </li>
-                            })}
-                          </ul>
-                          <Link to={`/profile/${_id}`} className="btn btn-primary">
-                            ver perfil  
-                          </Link>
+                      <div className="col-sm-4">
+                        <div className="card-body ">
+                            <h5 className="card-title">{name}</h5>
+                            <p className="card-text">{status} en: </p>
+                            <p className="card-text">{company && <code>{company}</code>}</p>
+                            <p className="card-text">{location && <span>{location}</span>}</p>
+                            {/* <p className="card-text">
+                              <small className="text-muted">
+                                {skills}
+                              </small>
+                            </p> */}
+                            {/* <ul>
+                              {skills.slice(0,4).map((item,index)=>{
+                                return <li key={index}>
+                                      <i className="fas fa-check"></i>
+                                      {item}
+                                  </li>
+                              })}
+                            </ul> */}
+                            <Link to={`/profile/${_id}`} className="btn btn-primary">
+                              ver perfil  
+                            </Link>
+                        </div>
                       </div>
-                      
+                      <div className="col-sm-4">
+                        <div className="card-body ">
+                            <p>conocimientos & habilidades</p>
+                            <ul>
+                              {skills.slice(0,4).map((item,index)=>{
+                                return <li key={index}>
+                                      <i className="fas fa-check"></i>
+                                      {item}
+                                  </li>
+                              })}
+                            </ul>
+                        </div>
                       </div>
                   </div>
               </div>
