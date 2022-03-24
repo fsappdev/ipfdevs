@@ -7,8 +7,7 @@ const ProfileCard = ({
     user: {_id, name, avatar}, 
     status,
     company,
-    location,
-    skills
+    location
   }
 }) => {
 
@@ -16,12 +15,8 @@ const ProfileCard = ({
 
   return (
     <div>
-        <div className="card " /* style={{maxWidth:"350px"}} */ >
-            
-               
-                <img src={avatar ? avatar : userDefault } className="card-img-top" alt="..."/>
-                 
-                
+        <div className="card mt-2" >
+                <img src={avatar ? avatar : userDefault } className="card-img-top" alt="..."/>    
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
                     <p className="">{status} en: </p>
@@ -32,7 +27,6 @@ const ProfileCard = ({
                 <Link to={`/profile/${_id}`} className="btn btn-primary">
                   perfil  
                 </Link>
-            
         </div>
     </div>
   )

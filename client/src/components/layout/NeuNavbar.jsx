@@ -9,7 +9,7 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
       <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
           <li className="nav-item active">   
             <Link className="nav-link" to="/profiles">
-            <i className="fa-solid fa-user-group"></i>
+
             <i className="fa-solid fa-user-group"></i>
                Devs
             </Link>

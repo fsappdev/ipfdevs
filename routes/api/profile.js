@@ -120,13 +120,18 @@ router.get('/', async (req, res) => {
 //@public
 router.get('/user/:user_id', async (req, res) => {
 
-    const query = req.params.user_id
 
+    console.log(req.params)
+
+    const query = req.params.user_id
+    console.log(query)
+    //await User.findByIdAndDelete({_id: req.user.id})
     try {
-        const profile = await Profile.findById(query).populate('user', ['name', 'avatar'])
+        const profile = await Profile.findOne({user: query}).populate('user', ['name', 'avatar'])
 
         if(!profile)return res.status(400).json({msg: 'error - profile not found - '})
 
+        console.log('PERFIL=>',profile)
         res.json(profile)
 
     } catch (error) {

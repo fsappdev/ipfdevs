@@ -15,6 +15,7 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading }}) => {
   
     useEffect(() => {
       getAllProfiles()
+      //es-lint
     }, [])
      
 
@@ -22,25 +23,28 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading }}) => {
     <>
       {!loading ? 
       <>
-        <div class="d-flex flex-row-reverse bd-highlight btn-group btn-group-sm mt-1">
+        <div className="d-flex flex-row-reverse bd-highlight btn-group btn-group-sm mt-2">
           
           <button type="button" className=''
-            style={{height:"25px", fontSize:"15px", paddingTop: "2px", width: "5%" }} 
+            style={{height:"25px", fontSize:"15px", paddingTop: "2px", width: "15%" }} 
             onClick={(e)=>{e.preventDefault()
-              setTypeView(false)
+              setTypeView(!typeView)
             }}
             >
-            <i class="fa fa-th-large" aria-hidden="true"></i>
+            {typeView ? 
+              <i className="fa fa-th-large" aria-hidden="true">tarjetas</i> :
+              <i className="fa fa-list" aria-hidden="true">lista</i>
+            }
           </button> 
 
-          <button type="button"
+          {/* <button type="button"
             style={{height:"25px", fontSize:"15px", paddingTop: "2px", width: "5%" }}  
             onClick={(e)=>{e.preventDefault()
               setTypeView(true)
             }}
             >
-            <i class="fa fa-list" aria-hidden="true"></i>
-          </button>
+            <i className="fa fa-list" aria-hidden="true"></i>
+          </button> */}
                      
         </div>
 
@@ -86,9 +90,6 @@ const Profiles = ({ getAllProfiles, profile: { profiles, loading }}) => {
             </div>    
         }
         
-
-       
-
       </> 
       : <Spinner/> }
     </>

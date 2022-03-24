@@ -14,6 +14,7 @@ import EditProfile from './components/profile-forms/EditProfile'
 import AddExperience from './components/profile-forms/AddExperience'
 import AddEducation from './components/profile-forms/AddEducation'
 import Profiles from './components/profiles/Profiles'
+import Profile from './components/profile/Profile'
 
 //neum components
 import NeuLogin from './components/auth/NeuLogin'
@@ -49,6 +50,7 @@ const App = () =>  {
           <Switch>
             <Route exact path={"/login"} component={NeuLogin}/>
             <Route exact path={"/profiles"} component={Profiles}/>
+            <Route exact path={"/profile/:id"} component={Profile}/>
             <Route exact path={"/register"} component={Register}/>
             <PrivateRoute exact path={"/dashboard"} component={Dashboard}/>
             <PrivateRoute exact path={"/create-profile"} component={CreateProfile}/>
