@@ -20,10 +20,8 @@
     "express-validator": "^6.13.0",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
     "mongoose": "^6.0.13",
     "pdf-lib": "^1.17.1",
-    "react-moment": "^1.1.1",
     "request": "^2.88.2",
     "uuid": "^8.3.2"
   },

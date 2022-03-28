@@ -394,6 +394,11 @@ select:focus{
 .profile-about {
   grid-area: about;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
 }
 
 .profile-about .skills {
@@ -405,10 +410,12 @@ select:focus{
 
 .profile-exp {
   grid-area: exp;
+  border-radius: 10px;
 }
 
 .profile-edu {
   grid-area: edu;
+  border-radius: 10px;
 }
 
 .profile-exp h2,
@@ -435,6 +442,7 @@ select:focus{
 
 .profile-github {
   grid-area: github;
+  border-radius: 10px;
 }
 
 .profile-github .repo {

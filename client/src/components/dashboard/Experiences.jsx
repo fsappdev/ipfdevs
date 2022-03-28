@@ -1,18 +1,10 @@
-import {useState} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { deleteExperience, deleteEducation } from '../../actions/profile'
 
 const Experiences = ({experience, type, deleteExperience, deleteEducation }) => {
 
-    /* const [tipo, setTipo] = useState() */
-
-    
-    /* if(experience[0].company){setTipo('experienciaLaboral')}
-    if(experience[0].school){setTipo('educacion')}
- */
     const experiencias = experience.map(exp => {
-
 
         const fechaFrom = new Date(exp.from)
         const fechaFromConv = fechaFrom.toLocaleDateString() 

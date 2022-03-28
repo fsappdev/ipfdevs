@@ -60,10 +60,14 @@ export const getProfileById = userId => async dispatch => {
 
 //get GH repos
 export const getGitHubRepos = username => async dispatch => {
+
+    console.log('username1!!!', username)
     
     try {
         
-        const res = await axios.get(`back/api/profile/github/${username}`)
+        const res = await axios.get(`/back/api/profile/github/${username}`)
+
+        console.log(res)
 
         dispatch({
             type: GET_REPOS,

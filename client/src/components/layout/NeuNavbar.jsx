@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/auth'
 
-const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
+const NeuNavbar = ({
+      auth: {isAuthenticated, loading, user }, logout, 
+   }) => {
 
    const authLinks = (
-      <ul className="navbar-nav  mb-2 mb-md-0 ml-auto">
+      <ul className="navbar-nav mb-2  ml-auto">
           <li className="nav-item active">   
             <Link className="nav-link" to="/profiles">
-
             <i className="fa-solid fa-user-group"></i>
                Devs
             </Link>
@@ -18,18 +19,16 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
           <li className="nav-item active mx-3">
               <Link className="nav-link" to="/dashboard">
               <i className="fa-solid fa-address-card"></i>{' '}
-                  <span className="">Panel de control</span>
+                  <span className="">Mi Panel</span>
               </Link>
           </li>
           
           <li className="nav-item active">
               <a className="btn" onClick={logout}>
                   <i className="fas fa-sign-out-alt"></i>{' '}
-                  <span className="hide-sm">Cerrar Sesión</span>
+                  <span className="hide-sm">Salir</span>
               </a>
           </li>
-
-          
       </ul>
    )
   
@@ -69,11 +68,17 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
 
          {
             !loading && isAuthenticated ? 
-            <div className="nav-link w-50 hide">
-               <i className="fa fa-user-circle-o" aria-hidden="true"></i>{' '}
+            <div className="nav-link w-100 hide" /* style={{left:"35%",position:"absolute"}} */>
+             
                {
-                  user ? `user: ${user.name}`: null
-               }
+                  user ?  
+                  <Link to={`/profile/${user._id}`}>
+                     <i className="fa fa-user-circle-o" aria-hidden="true"></i>{' '}
+                     {user.name}
+                  </Link>
+                  : null
+               }   
+              
             </div> 
             : null 
          }
@@ -84,18 +89,12 @@ const NeuNavbar = ({auth: {isAuthenticated, loading, user }, logout}) => {
             <span className="navbar-toggler-icon"></span>
          </button>
 
-
          <div className="collapse navbar-collapse" id="navbarCollapse">
             {/* condtnl render */}
-            
-            
-            
-         {
-            !loading && isAuthenticated ? authLinks : guestLinks 
-         }
-
+            {
+               !loading && isAuthenticated ? authLinks : guestLinks 
+            }
          </div>
-
       </div>
    </nav>
   )
