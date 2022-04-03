@@ -470,10 +470,12 @@ select:focus{
   grid-template-columns: 1fr 4fr;
   grid-gap: 2rem;
   align-items: center;
+  border-radius: 5px;
 }
 
 .post > div:first-child {
   text-align: center;
+  
 }
 
 .post img {

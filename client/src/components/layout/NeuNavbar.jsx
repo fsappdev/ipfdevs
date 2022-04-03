@@ -9,26 +9,33 @@ const NeuNavbar = ({
 
    const authLinks = (
       <ul className="navbar-nav mb-2  ml-auto">
-          <li className="nav-item active">   
+         <li className="nav-item active">   
+            <Link className="nav-link" to="/posts">
+            <i className="fa-solid fa-user-group"></i>
+               Publicaciones
+            </Link>
+         </li>
+
+         <li className="nav-item active">   
             <Link className="nav-link" to="/profiles">
             <i className="fa-solid fa-user-group"></i>
                Devs
             </Link>
-          </li>
+         </li>
 
-          <li className="nav-item active mx-3">
-              <Link className="nav-link" to="/dashboard">
-              <i className="fa-solid fa-address-card"></i>{' '}
-                  <span className="">Mi Panel</span>
-              </Link>
-          </li>
-          
-          <li className="nav-item active">
-              <a className="btn" onClick={logout}>
-                  <i className="fas fa-sign-out-alt"></i>{' '}
-                  <span className="hide-sm">Salir</span>
-              </a>
-          </li>
+         <li className="nav-item active mx-3">
+            <Link className="nav-link" to="/dashboard">
+            <i className="fa-solid fa-address-card"></i>{' '}
+               <span className="">Mi Panel</span>
+            </Link>
+         </li>
+         
+         <li className="nav-item active">
+            <button className="btn" onClick={logout}>
+               <i className="fas fa-sign-out-alt"></i>{' '}
+               <span className="hide-sm">Salir</span>
+            </button>
+         </li>
       </ul>
    )
   
@@ -43,7 +50,7 @@ const NeuNavbar = ({
 
 
          <li className="nav-item active">
-            <Link className="nav-link" to={"/login"}>
+            <Link className="nav-link" to="/login">
             <i className="fa-solid fa-arrow-right-to-bracket"></i>{' '}
                Inicia Sesíon o...
                

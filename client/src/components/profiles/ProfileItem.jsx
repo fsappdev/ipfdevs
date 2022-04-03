@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import userDefault from'../../img/default-user.png'
+import userDefault from '../../img/default-user.png'
 
 
 const ProfileItem = ({

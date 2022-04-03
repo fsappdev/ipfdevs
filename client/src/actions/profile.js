@@ -100,6 +100,9 @@ export const getCurrentProfile = () => async dispatch => {
 
     } catch (err) {
         
+        //alternativa a la linea 39 de reducers/profile.js
+        //dispatch({ type: CLEAR_PROFILE });
+
         dispatch({
             type: PROFILE_ERROR,
             payload: { 
