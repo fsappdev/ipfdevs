@@ -27,13 +27,13 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
                     </i>
                 </p>
                 {/* post Form */}
-               <div className="posts">
-                   {
-                       posts && posts.map(item=>{
-                           return <PostItem key={item._id} post={item} />
-                       })
-                   }
-               </div>
+                <div className="posts">
+                    {
+                        posts && posts.map(item=>{
+                            return <PostItem key={item._id} post={item} />
+                        })
+                    }
+                </div>
             </>
         }
     </>
