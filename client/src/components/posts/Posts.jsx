@@ -3,7 +3,9 @@ import {useEffect} from 'react'
 import { connect }from 'react-redux'
 import { getPosts } from "../../actions/post";
 import Spinner from "../layout/Spinner";
-import PostItem from './PostITem'
+import PostForm from './PostForm';
+import PostItem from './PostItem'
+
 
 const Posts = ({getPosts, post: {posts, loading}}) => {
 
@@ -26,14 +28,46 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
                         Bienvenido a la comunidad
                     </i>
                 </p>
-                {/* post Form */}
-                <div className="posts">
+               <PostForm/>
+
+                {
+                    posts && posts.length > 0 ? 
+
+                    <div className="posts">
+
+                        {
+                            posts.map(item=>{
+                                return <PostItem key={item._id} post={item} />
+                            })
+                        }
+
+                    </div>
+
+                    : 
+                    
+                    <p>...nada por aquí 😥</p>
+                }
+
+                {/* <div className="posts">
+                   
                     {
-                        posts && posts.map(item=>{
-                            return <PostItem key={item._id} post={item} />
-                        })
+                        posts && posts.length > 0 ? 
+
+                        <div className="posts">
+
+                            {
+                                posts.map(item=>{
+                                    return <PostItem key={item._id} post={item} />
+                                })
+                            }
+
+                        </div>
+
+                        : 
+                        
+                        <p>...nada por aquí 😥</p>
                     }
-                </div>
+                </div> */}
             </>
         }
     </>

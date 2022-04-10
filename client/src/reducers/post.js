@@ -2,7 +2,9 @@
 import {
     GET_POSTS,
     POST_ERROR,
-    UPDATE_LIKES
+    UPDATE_LIKES,
+    DELETE_POST,
+    ADD_POST
 } from '../actions/types'
 
 const initialState = {
@@ -21,13 +23,22 @@ export default function(state = initialState, action){
                 ...state,
                 posts: payload,
                 loading: false
-            }    
+            }   
         case POST_ERROR:
             return {
                 ...state,
                 error: payload,
                 loading: false
             }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter
+                (
+                    item => item._id != payload
+                ),
+                loading: false
+            }     
         case UPDATE_LIKES:
             return {
                 ...state,
@@ -39,7 +50,13 @@ export default function(state = initialState, action){
                     : item
                 ),
                 loading: false
-            }    
+            }   
+        case ADD_POST:
+            return {
+                ...state,
+                posts: [payload, ...state.posts],
+                loading: false
+            }   
         default:
             return state         
     }
