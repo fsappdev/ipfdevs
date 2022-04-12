@@ -107,11 +107,13 @@ const Profile = ({ getProfileById, auth, error , profile : { profile, loading } 
         profile === null && !error ?  <Spinner/> : null
       }
       {
-        profile === null && error ?  
+        error ?  
         <div className="centeredColumn mt-5">
           <p>😥nada por aqui, el perfil no existe❌</p>
+          <p>🤷‍♂️hubo un error del tipo <em>{error.error.msg} {error.error.status} </em> 🚫</p>
           <Link  className="blue-icon btn btn-light" 
           to="/posts"> volver a las publicaciones </Link>
+          {console.log('objError=>',error.error)}
         </div> :  null
       }
 
