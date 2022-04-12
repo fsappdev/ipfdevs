@@ -12,11 +12,7 @@ import ProfileEducation from './ProfileEducation'
 import ProfileGithub from './ProfileGithub'
 
 
-
-
-
-
-const Profile = ({ getProfileById, auth, profile : { profile, loading } }) => {
+const Profile = ({ getProfileById, auth, error , profile : { profile, loading } }) => {
     
     const { id } = useParams()
 
@@ -26,8 +22,9 @@ const Profile = ({ getProfileById, auth, profile : { profile, loading } }) => {
     
   return (
     <section className='container'>
+
       {
-        profile === null ? <Spinner/> : 
+        profile && 
         <>
           <Link to="/profiles" className='btn mx-2 my-2'>
             <i className="fa-regular fa-circle-left"></i>
@@ -102,15 +99,22 @@ const Profile = ({ getProfileById, auth, profile : { profile, loading } }) => {
               }
             </div>  
             
-
-            {/* {profile.githubusername &&                 
-                <ProfileGithub username={profile.githubusername} /> 
-            } */}
-             
           </div>
-         
+       
         </>
       }
+      {
+        profile === null && !error ?  <Spinner/> : null
+      }
+      {
+        profile === null && error ?  
+        <div className="centeredColumn mt-5">
+          <p>😥nada por aqui, el perfil no existe❌</p>
+          <Link  className="blue-icon btn btn-light" 
+          to="/posts"> volver a las publicaciones </Link>
+        </div> :  null
+      }
+
     </section>
   )
 }
@@ -123,6 +127,7 @@ Profile.propTypes = {
 
 const mapStateToProps = state => ({
     profile : state.profile,
+    error: state.profile,
     auth: state.auth
 })
 
