@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { setAlert } from './alert'
-import { DELETE_ACCOUNT, GET_PROFILE, GET_PROFILES, PROFILE_ERROR, UPDATE_PROFILE, CLEAR_PROFILE,GET_REPOS } from './types'
+import { DELETE_ACCOUNT, GET_PROFILE, GET_PROFILES, PROFILE_ERROR, UPDATE_PROFILE, CLEAR_PROFILE,GET_REPOS, CLEAR_REPOS } from './types'
 
 const urlTemp = 'http://localhost:5000'
 
@@ -9,7 +9,8 @@ const urlTemp = 'http://localhost:5000'
 export const getAllProfiles = () => async dispatch => {
     
     dispatch({type: CLEAR_PROFILE})
-    
+    dispatch({type: CLEAR_REPOS})
+
     try {
         
         const res = await axios.get('back/api/profile')
@@ -34,7 +35,8 @@ export const getAllProfiles = () => async dispatch => {
 //get profile by id
 export const getProfileById = userId => async dispatch => {
     //const url = "/back/api/profile/user/"
-    //dispatch({type: CLEAR_PROFILE})
+    dispatch({type: CLEAR_REPOS})
+    dispatch({type: CLEAR_PROFILE})
     try {
         //TODO: LA RUTA DE ABAJO LLEVA UNA / X DELANTE, ---¿?
         const res = await axios.get(`/back/api/profile/user/${userId}`)

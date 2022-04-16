@@ -4,11 +4,17 @@ import { GET_POSTS,
     POST_ERROR, 
     UPDATE_LIKES, 
     DELETE_POST,
-    ADD_POST
+    ADD_POST,
+    CLEAR_PROFILE,
+    CLEAR_REPOS
 } from "./types"; 
 
 //Get posts
 export const getPosts = () => async dispatch => {
+
+    dispatch({type: CLEAR_PROFILE})
+    dispatch({type: CLEAR_REPOS})
+
     try {
         const res = await axios.get('/back/api/posts')
 

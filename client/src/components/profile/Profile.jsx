@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useParams} from 'react-router-dom'
+import { Link, useParams, useHistory} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Spinner from '../layout/Spinner'
@@ -15,6 +15,8 @@ import ProfileGithub from './ProfileGithub'
 const Profile = ({ getProfileById, auth, error , profile : { profile, loading } }) => {
     
     const { id } = useParams()
+
+    const history = useHistory()
 
     useEffect(() => {        
         getProfileById(id)
@@ -90,7 +92,7 @@ const Profile = ({ getProfileById, auth, error , profile : { profile, loading } 
             <div className='profile-github bg-white p-2 mb-5'>
               <h2 className="text-primary">
                 {profile.githubusername  ? 'repositorios de gh ':
-                  'sin repositorios'
+                  'sin perfil de GH'
                 }
               </h2>
 
@@ -103,18 +105,29 @@ const Profile = ({ getProfileById, auth, error , profile : { profile, loading } 
        
         </>
       }
+
       {
         profile === null && !error ?  <Spinner/> : null
       }
+
       {
-        error ?  
-        <div className="centeredColumn mt-5">
-          <p>😥nada por aqui, el perfil no existe❌</p>
-          <p>🤷‍♂️hubo un error del tipo <em>{error.error.msg} {error.error.status} </em> 🚫</p>
-          <Link  className="blue-icon btn btn-light" 
-          to="/posts"> volver a las publicaciones </Link>
-          {console.log('objError=>',error.error)}
-        </div> :  null
+        profile === null && error  ? 
+          <div className="centeredColumn mt-5">
+            <p>😥nada por aqui, el perfil no existe❌</p>
+              <p>🤷‍♂️hubo un error del tipo {' '} 
+                <em>{error?.error?.status} {error?.error?.msg} </em> 🚫
+              </p>
+            <button 
+              className="blue-icon btn btn-light" 
+              onClick={()=>{history.goBack()}}
+            > 
+            volver a la página anterior
+            </button>
+            {console.log('objError=>',error)}
+            {console.log('objError=>',error?.error?.msg)}
+            {console.log('objError=>',error?.error?.status)}
+          </div>
+        : null
       }
 
     </section>

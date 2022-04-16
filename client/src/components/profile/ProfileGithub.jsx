@@ -17,8 +17,8 @@ const ProfileGithub = ( {username, getGitHubRepos, repos} ) => {
     <div>
       {
         repos && repos.length < 1 ? <p> sin repositorios 😴 </p> : 
-          repos.map(item => 
-          <div key={item._id} className="repo bg-white p-1 my-1">
+          repos.map((item, index) => 
+          <div key={index} className="repo bg-white p-1 my-1">
             <div className="">
               <h4>
                 <a href={item.html_url} target="_blank" rel="noopener noreferrer">
