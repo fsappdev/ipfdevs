@@ -37,7 +37,7 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
 
                         {
                             posts.map(item=>{
-                                return <PostItem key={item._id} post={item} />
+                                return <PostItem  key={item._id} post={item} />
                             })
                         }
 

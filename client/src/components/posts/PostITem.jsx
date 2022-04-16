@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
@@ -10,14 +9,15 @@ const PostITem = ({addLike,
     removeLike, 
     auth, 
     deletePost,
-    post: {_id, user, text, name, avatar, likes, comments, date}
+    post: {_id, user, text, name, avatar, likes, comments, date},
+    showActions
 }) => {
 
-    
-  const fechaDate = new Date(date)
-  const fechaDateConv = fechaDate.toLocaleDateString()
+   
+    const fechaDate = new Date(date)
+    const fechaDateConv = fechaDate.toLocaleDateString()
 
-  return (
+    return (
     <div className="post bg-white p-1 my-1">      
         <div>
             <Link to={`/profile/${user}`}>
@@ -39,47 +39,56 @@ const PostITem = ({addLike,
                 Creado el {fechaDateConv}
             </p>
             
-            <button  onClick={(e)=>addLike(_id)}
-                type="button" className="btn btn-light">
-                <i className="fas fa-thumbs-up"></i>{' '}
-                <span>
-                    {likes.length > 0 ? likes.length : null}
-                </span>
-            </button>
-            
-            <button onClick={(e)=>removeLike(_id)}
-                type="button" className="btn btn-light">
-                <i className="fas fa-thumbs-down"></i>
-               {/*  <span>
-                    {likes.length > 0 ? likes.length : null}
-                </span> */}
-            </button>
-            
-            <Link to={`/post/${_id}`} className="btn btn-primary">
-                Comentarios 
-                {
-                    comments.length > 0 ?
-                    <span className='comment-count'>{comments.length}</span>
-                    :
-                    null
-                }
-            </Link>
-
             {
-                !auth.loading && user === auth.user._id && 
-                <button      
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={(e) => { deletePost(_id)}}
-                >   
-                borrar post❌
-               { /* <i className="fas fa-times"></i> */ } 
-                </button>
-            }
+                showActions && 
+                <>
+                    <button  onClick={(e)=>addLike(_id)}
+                        type="button" className="btn btn-light">
+                        <i className="fas fa-thumbs-up"></i>{' '}
+                        <span>
+                            {likes.length > 0 ? likes.length : null}
+                        </span>
+                    </button>
+            
+                    <button onClick={(e)=>removeLike(_id)}
+                        type="button" className="btn btn-light">
+                        <i className="fas fa-thumbs-down"></i>
+                    {/*  <span>
+                            {likes.length > 0 ? likes.length : null}
+                        </span> */}
+                    </button>
+            
+                    <Link to={`/post/${_id}`} className="btn btn-primary">
+                        Comentarios 
+                        {
+                            comments.length > 0 ?
+                            <span className='comment-count'>{comments.length}</span>
+                            :
+                            null
+                        }
+                    </Link>
+
+                    {
+                        !auth.loading && user === auth.user._id && 
+                        <button      
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={(e) => { deletePost(_id)}}
+                        >   
+                        borrar post❌
+                        { /* <i className="fas fa-times"></i> */ } 
+                        </button>
+                    }
+                </>     
+            }  
         </div>
     </div>
 
   )
+}
+
+PostITem.defaultProps = {
+    showActions: true
 }
 
 PostITem.propTypes = {
