@@ -7,7 +7,9 @@ import { GET_POSTS,
     DELETE_POST,
     ADD_POST,
     CLEAR_PROFILE,
-    CLEAR_REPOS
+    CLEAR_REPOS,
+    ADD_COMMENT,
+    REMOVE_COMMENT
 } from "./types"; 
 
 //Get posts
@@ -145,6 +147,66 @@ export const addPost = formData => async dispatch => {
             payload: res.data
         })
 
+    } catch (err) {
+
+        if(err.response){
+            dispatch({
+                type: POST_ERROR,
+                payload: { 
+                    msg: err.response.statusText,
+                    status: err.response.status
+                }
+            })
+        }
+    }
+}
+
+//delete Comment
+export const deleteComment = (postId, commentId) => async dispatch => {
+
+    try {
+        
+        const res = await axios.post(`/back/api/posts/comment/${postId}/${commentId}`)
+    
+        
+        dispatch({
+            type: REMOVE_COMMENT,
+            payload: commentId
+        })
+        
+        dispatch(setAlert('comentario eliminado', 'success'))
+
+    } catch (err) {
+
+        if(err.response){
+            dispatch({
+                type: POST_ERROR,
+                payload: { 
+                    msg: err.response.statusText,
+                    status: err.response.status
+                }
+            })
+        }
+    }
+}
+
+//Delete Comment
+export const addComment = (postId, formData) => async dispatch => {
+
+    const config = {headers : {'Content-Type':'application/json'}}
+
+    try {
+        
+        const res = await axios.post(`/back/api/posts/comment/${postId}`, formData, config)
+    
+        
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        })
+        
+        dispatch(setAlert('comentario agregado', 'success'))
+        
     } catch (err) {
 
         if(err.response){
