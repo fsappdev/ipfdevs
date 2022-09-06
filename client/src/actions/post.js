@@ -2,6 +2,7 @@ import axios from 'axios'
 import { setAlert } from './alert'
 import { GET_POSTS,
     GET_POST, 
+    CLEAR_POST,
     POST_ERROR, 
     UPDATE_LIKES, 
     DELETE_POST,
@@ -17,6 +18,8 @@ export const getPosts = () => async dispatch => {
 
     dispatch({type: CLEAR_PROFILE})
     dispatch({type: CLEAR_REPOS})
+    dispatch({type: CLEAR_POST})
+
 
     try {
         const res = await axios.get('/back/api/posts')
@@ -61,6 +64,15 @@ export const getPost = id => async dispatch => {
         }) */
     }
 }
+
+//Clear selected post
+export const clearPost = () => {
+    dispatch({
+        type: CLEAR_POST,
+        payload: null
+    })
+}
+
 
 //Add like
 export const addLike = (id) => async dispatch => {

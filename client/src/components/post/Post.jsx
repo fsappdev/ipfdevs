@@ -3,13 +3,13 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Spinner from '../layout/Spinner'
-import { getPost } from '../../actions/post'
+import { getPost, clearPost } from '../../actions/post'
 import PostItem from '../posts/PostItem'
 import CommentForm from '../post/CommentForm'
 import CommentItem from '../post/CommentItem'
 
 
-const Post = ({ getPost, post: {post, loading}, match}) => {            
+const Post = ({ getPost, clearPost, post: {post, loading}, match}) => {            
 
     const history = useHistory()     
 
@@ -23,7 +23,10 @@ const Post = ({ getPost, post: {post, loading}, match}) => {
         <>  
             <button 
                 className="blue-icon btn btn-light mt-3" 
-                onClick={()=>{history.goBack()}}
+                onClick={()=>{
+                    history.goBack()
+                    clearPost()
+                }}
             > 
             volver a las publicaciones
             </button>
@@ -52,6 +55,7 @@ const Post = ({ getPost, post: {post, loading}, match}) => {
 
 Post.propTypes = {
     getPost: PropTypes.func.isRequired,
+    clearPost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
 }
 
@@ -59,4 +63,4 @@ const mapStateToProps = state => ({
     post: state.post
 })
 
-export default connect(mapStateToProps, { getPost } )(Post)
+export default connect(mapStateToProps, { getPost, clearPost } )(Post)
