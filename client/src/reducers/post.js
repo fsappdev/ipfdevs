@@ -2,6 +2,7 @@
 import {
     GET_POSTS,
     GET_POST,
+    CLEAR_POST,
     POST_ERROR,
     UPDATE_LIKES,
     DELETE_POST,
@@ -32,7 +33,13 @@ export default function(state = initialState, action){
                 ...state,
                 post: payload,
                 loading: false
-            }   
+            }  
+        case CLEAR_POST:
+            return {
+                ...state,
+                post: null,
+                loading: false
+            } 
         case POST_ERROR:
             return {
                 ...state,
