@@ -1,6 +1,6 @@
 {
    "mongoURI": "mongodb+srv://dardbmongo:NoJjq9fR672Bc2Uz@devconnector.l1jpy.mongodb.net/devconnector?retryWrites=true&w=majority",
-   "jwtSecret" :"vamoriverpleee",
+   "jwtSecret" :"frasesecreta",
    "githubClientId":"f3645cdba5c56852b20f",
    "gitHubSecret":"8ebbe1026d93efe4e0df316a78874a502f9033ac"
 }
