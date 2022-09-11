@@ -120,7 +120,6 @@ router.get('/', async (req, res) => {
 //@public
 router.get('/user/:user_id', async (req, res) => {
 
-
     console.log(req.params)
 
     const query = req.params.user_id
