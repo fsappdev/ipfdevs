@@ -2,11 +2,11 @@
 import { useEffect } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { loadUser } from './actions/auth'
 import Landing from './components/layout/Landing'
 import Alert from "./components/layout/Alert";
 import Register from './components/auth/Register'
 import setAuthToken  from './utils/setAuthToken'
-import { loadUser } from './actions/auth'
 import Dashboard from './components/dashboard/Dashboard'
 import PrivateRoute from './components/routing/PrivateRoute'
 import CreateProfile from './components/profile-forms/CreateProfile'

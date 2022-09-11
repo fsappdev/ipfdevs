@@ -155,7 +155,6 @@ const Register = ({setAlert, register, isAuthenticated}) => {
     )
 }
 
-
 Register.propTypes = {
     setAlert : PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
